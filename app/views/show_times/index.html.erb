@@ -1,0 +1,16 @@
+<div class="container mt-5">
+
+  <% @show_times.each do |show_time| %>
+    <div id="<%= dom_id show_time %>" class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Movie time: <%= format_date(show_time.start_time, show_time.end_time) %></h5>
+        <p class="card-text">Available seats: <%= show_time.available_seats %></p>
+        <p class="card-text">Price: <%= show_time.price %></p>
+        <p class="card-text">Movie: <%= show_time.movie_id %></p>
+        <p>
+          <%= book_tickets_link(show_time)%>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>

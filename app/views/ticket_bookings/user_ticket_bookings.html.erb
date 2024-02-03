@@ -1,0 +1,30 @@
+<div class="container mt-5">
+  <h1>My Bookings</h1>
+
+    <% if current_user.ticket_bookings.any? %>
+      <%= form_tag(cancel_multiple_ticket_bookings_path, method: :post, data: { turbo: false }) do %>
+        <% current_user.ticket_bookings.group_by { |booking| booking.show_time }.each do |show_time, bookings| %>
+          <% if show_time == bookings.first.show_time %>
+            <div class="card mb-3">
+              <div class="card-header">
+                <h4 class="card-title mb-0">
+                  Movie: <%= show_time.movie&.title %> - Show Time: <%= format_date(show_time.start_time, show_time.end_time) %>
+                </h4>
+              </div>
+              <div class="card-body">
+                <% bookings.each do |booking| %>
+                  <div class="form-check">
+                    <%= check_box_tag 'booking_ids[]', booking.id, false, class: "form-check-input" %>
+                    <label class="form-check-label"><strong>Seat Number:</strong> <%= booking.seat_number %></label>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <%= submit_tag 'Cancel Selected Bookings', class: "btn btn-danger my-2" %>
+      <% end %>
+    <% end %>
+
+  <%= link_to 'back', movies_path, class: 'btn btn-primary' %>
+</div>

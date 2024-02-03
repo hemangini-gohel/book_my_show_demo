@@ -1,0 +1,20 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Movies</h1>
+
+  <div id="movies">
+    <% @movies.each do |movie| %>
+      <div class="card mb-3">
+        <%= render movie %>
+        <div class="card-body">
+          <p class="card-text">
+            <% if movie.show_times.any? %>
+              <%= link_to "Show Timings", movie_show_times_path(movie), class: 'btn btn-primary' %>
+            <% else %>
+              <span>No show time available</span>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

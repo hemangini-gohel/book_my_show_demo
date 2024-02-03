@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :users
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :movies, only: [:index] do
+    resources :show_times, only: [:index] do
+      resources :ticket_bookings, only: [:new, :create]
+    end
+  end
+  get 'user_ticket_bookings', to: 'ticket_bookings#user_ticket_bookings'
+  post 'ticket_bookings/cancel_multiple', to: 'ticket_bookings#cancel_multiple', as: 'cancel_multiple_ticket_bookings'
+  root 'movies#index'
 end

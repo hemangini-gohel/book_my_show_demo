@@ -1,0 +1,11 @@
+<div class="container mt-5">
+  <% @ticket_bookings.each do |ticket_booking| %>
+    <div id="<%= dom_id ticket_booking %>" class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Seat number: <%= ticket_booking.seat_number %></h5>
+        <p class="card-text">Show time: <%= ticket_booking.show_time_id %></p>
+        <p class="card-text">User: <%= ticket_booking.user_id %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,3 +1,22 @@
+# Getting started
+To get started with the app, first clone the repo and `cd` into the directory:
+
+```
+git clone https://github.com/hemangini-gohel/book_my_show_demo.git
+cd book_my_show_demo
+bundle install
+rails db:setup
+rails s
+```
+
+# Demo Link
+https://vimeo.com/909444341/f7bfbf960b?share=copy
+
+# Prerequisites
+* Ruby 3
+* Rails 7
+* PostgreSQL
+
 # Problem Statement
 
 Movie Initialization:
